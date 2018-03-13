@@ -27,6 +27,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="Jokeslib" exported="" />
+    <orderEntry type="module" module-name="Jokeslib" exported="" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="endpoints-framework-2.0.9" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="appengine-api-1.0-sdk-1.9.63" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="jstl-1.2" level="project" />
