@@ -1,0 +1,19 @@
+Mar 13, 2018 10:57:35 PM com.google.appengine.tools.development.SystemPropertiesManager setSystemProperties
+INFO: Overwriting system property key 'java.util.logging.config.file', value 'C:\Program Files (x86)\Google\Cloud SDK\google-cloud-sdk\platform\google_appengine\google\appengine\tools\java\config\sdk\logging.properties' with value 'WEB-INF/logging.properties' from 'C:\ADND\Projects\P03.Jokes\backend\build\exploded-backend\WEB-INF\appengine-web.xml'
+2018-03-13 22:57:35.613:INFO::main: Logging initialized @543ms
+2018-03-13 22:57:36.079:INFO:oejs.Server:main: jetty-9.3.18.v20170406
+2018-03-13 22:57:41.012:INFO:oeja.AnnotationConfiguration:main: Scanning elapsed time=4323ms
+2018-03-13 22:57:41.748:INFO:oejsh.ContextHandler:main: Started c.g.a.t.d.j.DevAppEngineWebAppContext@2584b82d{/,file:///C:/ADND/Projects/P03.Jokes/backend/build/exploded-backend/,AVAILABLE}{C:\ADND\Projects\P03.Jokes\backend\build\exploded-backend}
+2018-03-13 22:57:41.764:INFO:oejs.AbstractConnector:main: Started NetworkTrafficSelectChannelConnector@465232e9{HTTP/1.1,[http/1.1]}{localhost:8080}
+2018-03-13 22:57:41.767:INFO:oejs.Server:main: Started @6697ms
+Mar 13, 2018 7:57:41 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: Module instance default is running at http://localhost:8080/
+Mar 13, 2018 7:57:41 PM com.google.appengine.tools.development.AbstractModule startup
+INFO: The admin console is running at http://localhost:8080/_ah/admin
+Mar 13, 2018 10:57:41 PM com.google.appengine.tools.development.DevAppServerImpl doStart
+INFO: Dev App Server is now running
+2018-03-13 23:01:22.662:INFO:oejs.AbstractConnector:pool-1-thread-1: Stopped NetworkTrafficSelectChannelConnector@465232e9{HTTP/1.1,[http/1.1]}{localhost:8080}
+2018-03-13 23:01:22.673:INFO:oejsh.ContextHandler:pool-1-thread-1: Stopped c.g.a.t.d.j.DevAppEngineWebAppContext@2584b82d{/,file:///C:/ADND/Projects/P03.Jokes/backend/build/exploded-backend/,UNAVAILABLE}{C:\ADND\Projects\P03.Jokes\backend\build\exploded-backend}
+Mar 13, 2018 11:01:22 PM com.google.appengine.tools.development.AbstractModule shutdown
+INFO: Shutting down module instance default
+Shutting down.

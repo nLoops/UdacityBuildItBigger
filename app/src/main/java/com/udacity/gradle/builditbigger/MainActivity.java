@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void tellJoke(View view) {
         Intent intent = new Intent(MainActivity.this, JokesActivity.class);
-        String joke = JokesProvider.getJoke();
+        JokesProvider jokesProvider = new JokesProvider();
+        String joke = jokesProvider.getRandomJoke();
         String extra_string = "joke";
         intent.putExtra(extra_string, joke);
         startActivity(intent);
