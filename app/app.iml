@@ -135,7 +135,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/builds" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check-manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes-jar" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
@@ -215,7 +214,5 @@
     <orderEntry type="module" module-name="androidjokesmodule" />
     <orderEntry type="module" module-name="Jokeslib" />
     <orderEntry type="library" name="android-android-27" level="project" />
-    <orderEntry type="module" module-name="androidjokesmodule" />
-    <orderEntry type="module" module-name="Jokeslib" />
   </component>
 </module>
