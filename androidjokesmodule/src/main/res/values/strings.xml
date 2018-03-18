@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AndroidJokesModule</string>
+    <string name="no_passed_joke">There\'s no Joke to display</string>
 </resources>

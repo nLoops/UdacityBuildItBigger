@@ -83,7 +83,7 @@ public class MainActivityFragment extends Fragment {
      */
     private void startDisplayIntent(String result) {
         Intent intent = new Intent(getActivity(), JokesActivity.class);
-        intent.putExtra("joke", result);
+        intent.putExtra(JokesActivity.INTENT_EXTRAS, result);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getActivity().startActivity(intent);
     }
