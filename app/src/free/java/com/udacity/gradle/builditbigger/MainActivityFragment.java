@@ -18,7 +18,7 @@ import com.nloops.androidjokesmodule.JokesActivity;
 
 public class MainActivityFragment extends Fragment {
 
-    ProgressBar progressBar;
+    private ProgressBar mProgressBar;
 
     public MainActivityFragment() {
     }
@@ -29,7 +29,7 @@ public class MainActivityFragment extends Fragment {
         final View root = inflater.inflate(R.layout.fragment_main, container, false);
 
         Button jokeButton = (Button) root.findViewById(R.id.btn_free_joke);
-        progressBar = (ProgressBar) root.findViewById(R.id.progress_activity);
+        mProgressBar = (ProgressBar) root.findViewById(R.id.progress_activity);
         jokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +56,8 @@ public class MainActivityFragment extends Fragment {
         new EndpointsAsyncTask() {
             @Override
             protected void onPreExecute() {
-                if (progressBar != null) {
-                    progressBar.setVisibility(View.VISIBLE);
+                if (mProgressBar != null) {
+                    mProgressBar.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -67,7 +67,7 @@ public class MainActivityFragment extends Fragment {
                     startDisplayIntent(s);
                 }
 
-                progressBar.setVisibility(View.GONE);
+                mProgressBar.setVisibility(View.GONE);
             }
         }.execute();
     }
