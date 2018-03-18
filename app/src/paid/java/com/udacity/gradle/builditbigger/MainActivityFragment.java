@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.nloops.androidjokesmodule.JokesActivity;
 
@@ -53,6 +54,9 @@ public class MainActivityFragment extends Fragment {
             protected void onPostExecute(String s) {
                 if (s != null) {
                     startDisplayIntent(s);
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Cannot get data from server", Toast.LENGTH_LONG).show();
                 }
 
                 progressBar.setVisibility(View.GONE);

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -65,6 +66,9 @@ public class MainActivityFragment extends Fragment {
             protected void onPostExecute(String s) {
                 if (s != null) {
                     startDisplayIntent(s);
+                } else {
+                    Toast.makeText(getActivity().getApplicationContext(),
+                            "Cannot get data from server", Toast.LENGTH_LONG).show();
                 }
 
                 mProgressBar.setVisibility(View.GONE);
