@@ -22,3 +22,14 @@ allprojects {
         }
     }
 }
+
+task tieAll(dependsOn: [":backend:appengineStart",
+                        ":app:connectedCheck",
+                        ":backend:appengineStop"
+]) {
+
+    doLast {
+        println 'tieAll Task Complete'
+    }
+
+}
