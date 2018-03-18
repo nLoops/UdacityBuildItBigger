@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 import com.udacity.gradle.builditbigger.backend.myApi.model.MyBean;
 import com.nloops.androidjokesmodule.JokesActivity;
@@ -19,56 +21,34 @@ import java.io.IOException;
  * This class will manage background task to get data from java library
  */
 
-public class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
-    private static MyApi myApiService = null;
-    private Context mContext;
-    private ProgressBar mProgressBar;
-
-    public EndpointsAsyncTask(Context context, ProgressBar progressBar) {
-        this.mContext = context;
-        this.mProgressBar = progressBar;
-    }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        if (mProgressBar != null) {
-            mProgressBar.setVisibility(View.VISIBLE);
-        }
+    protected String doInBackground(Void... voids) {
+        MyApi.Builder builder = new MyApi.Builder
+                (AndroidHttp.newCompatibleTransport(),
+                        new AndroidJsonFactory(), null)
+                .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                .setApplicationName("backend")
+                .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                    @Override
+                    public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                        abstractGoogleClientRequest.setDisableGZipContent(true);
+                    }
+                });
 
-    }
+        MyApi myApiService = builder.build();
 
-    @Override
-    protected String doInBackground(Pair<Context, String>[] pairs) {
-        if (myApiService == null) {
-            MyApi.Builder builder = new MyApi.Builder(
-                    AndroidHttp.newCompatibleTransport(),
-                    new AndroidJsonFactory(),
-                    null)
-                    .setRootUrl("http://10.0.2.2:8080/_ah/api/");
-            myApiService = builder.build();
-        }
+        String joke = null;
 
         try {
-            return myApiService.provideJoke(new MyBean()).execute().getData();
+            joke = myApiService.provideJoke(new MyBean()).execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            e.printStackTrace();
         }
-    }
 
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        mProgressBar.setVisibility(View.INVISIBLE);
-        startDisplayIntent(s);
-    }
-
-    private void startDisplayIntent(String result) {
-        Intent intent = new Intent(mContext, JokesActivity.class);
-        intent.putExtra("joke", result);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
-
+        return joke;
     }
 }
+

@@ -1,6 +1,8 @@
 package com.udacity.gradle.builditbigger;
 
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,9 +13,12 @@ import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.udacity.gradle.builditbigger.R;
+import com.nloops.androidjokesmodule.JokesActivity;
+
 
 public class MainActivityFragment extends Fragment {
+
+    ProgressBar progressBar;
 
     public MainActivityFragment() {
     }
@@ -23,12 +28,12 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_main, container, false);
 
-        final ProgressBar progressBar = (ProgressBar) root.findViewById(R.id.progress_activity);
         Button jokeButton = (Button) root.findViewById(R.id.btn_free_joke);
+        progressBar = (ProgressBar) root.findViewById(R.id.progress_activity);
         jokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EndpointsAsyncTask(root.getContext(), progressBar).execute();
+                loadJoke();
             }
         });
 
@@ -41,6 +46,42 @@ public class MainActivityFragment extends Fragment {
                 .build();
         mAdView.loadAd(adRequest);
         return root;
+    }
+
+    /**
+     * helper method to load joke
+     */
+    @SuppressLint("StaticFieldLeak")
+    private void loadJoke() {
+        new EndpointsAsyncTask() {
+            @Override
+            protected void onPreExecute() {
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                if (s != null) {
+                    startDisplayIntent(s);
+                }
+
+                progressBar.setVisibility(View.GONE);
+            }
+        }.execute();
+    }
+
+    /**
+     * Helper method that take the result of AsyncTask and pass to Joke Activity
+     *
+     * @param result
+     */
+    private void startDisplayIntent(String result) {
+        Intent intent = new Intent(getActivity(), JokesActivity.class);
+        intent.putExtra("joke", result);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(intent);
     }
 
 
